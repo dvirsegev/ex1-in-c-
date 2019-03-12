@@ -23,7 +23,7 @@ namespace Excercise_1
             listOfFunctions = new List<Calculation>();
         }
         // add functions to the list;
-        public ComposedMission Add (Calc function)
+        public ComposedMission Add (Calculation function)
         {
             listOfFunctions.Add(function);
             return this;
