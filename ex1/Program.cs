@@ -38,6 +38,7 @@ namespace Excercise_1
             PrintAvailableFunctions(funcList);
 
             // This handler will output the screen every mission that was activated and it's value
+          
             EventHandler<double> LogHandler = (sender, val) =>
             {
                 IMission mission = sender as IMission;
@@ -47,7 +48,7 @@ namespace Excercise_1
                     Console.WriteLine($"Mission of Type: {mission.Type} with the Name {mission.Name} returned {val}");
                 }
             };
-
+           
             EventHandler<double> SqrtHandler = (sender, val) =>
             {
                 // This function will Create a sqrt mission and will continue to sqrt until a number less than 2
@@ -63,7 +64,7 @@ namespace Excercise_1
                 } while (val > 2);
                 Console.WriteLine("----------------------------------------");
             };
-
+        
             ComposedMission mission1 = new ComposedMission("mission1")
                 .Add(funcList["Square"])
                 .Add(funcList["Sqrt"]);
@@ -87,6 +88,7 @@ namespace Excercise_1
 
             var missionList = new List<IMission>() { mission1, mission2, mission3, mission4, mission5 };
 
+            // each mission, enter this his member the event logHandler and SqrtHandler.
             foreach (var m in missionList)
             {
                 m.OnCalculate += LogHandler;

@@ -9,23 +9,26 @@ namespace Excercise_1
     public class SingleMission : IMission
     {
         // members
-        private event EventHandler<double> OnCalculate;
-        private Calc mis;
-        private string name, value;
+        private Calculation mis;
+        private string name;
+        public event EventHandler<double> OnCalculate;
         // property
 
-        public String Value { get { return "Single"; } }
+        public String Type { get { return "Single"; } }
         public String Name {
         get { return name; } }
+
         //Ctor
-        public SingleMission(Calc mission,string nameFunction)
+        public SingleMission(Calculation mission,string nameFunction)
         {
             name = nameFunction;
             mis = mission; 
         }
         public double Calculate(double var)
         {
-            return mis(var);
+            double result= mis(var);
+            OnCalculate?.Invoke(this, mis(var));
+            return result;
         }
     }
 }

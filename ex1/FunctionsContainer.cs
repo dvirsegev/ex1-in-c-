@@ -7,24 +7,41 @@ using System.Threading.Tasks;
 namespace Excercise_1
 {
     // the delegate of the function.
-    public delegate double Calc(double var);
+    public delegate double Calculation(double var);
     public class FunctionsContainer
     {
-        private Dictionary<string, Calc> myDic;
+        private Dictionary<String, Calculation> myDictionary;
         public FunctionsContainer()
         {
-            myDic = new Dictionary<string, Calc>();
+            myDictionary = new Dictionary<String, Calculation>();
         }
         // Indexer declaration.
-        public Calc this[string name]
+        public Calculation this[String name]
         {
             get
             {
-                if(myDic[name]!= null) { return myDic[name]; }
-                return null;
+                Calculation fucntion;
+                if(myDictionary.TryGetValue(name,out fucntion)) { return myDictionary[name]; }
+                myDictionary.Add(name, x => x);
+                return myDictionary[name];
             }
-            set { myDic.Add(name, value); }
+            set {
+                if(myDictionary.ContainsKey(name))
+                {
+                    myDictionary[name] = value;
+                }
+               else
+                    myDictionary.Add(name, value);
+            }
   
+        }
+        public List<string> getAllMissions()
+        {
+            List<string> missions= new List<string>();
+            foreach (var item in myDictionary.Keys) {
+                missions.Add(item);
+            }
+            return missions;
         }
     }
 }

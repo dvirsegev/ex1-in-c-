@@ -8,18 +8,19 @@ namespace Excercise_1
 {
     public class ComposedMission : IMission
     {
-        private event EventHandler<double> OnCalculate;
+        public event EventHandler<double> OnCalculate;
         // members
-        private List<Calc> listOfFunctions;
+        private List<Calculation> listOfFunctions;
         private string name;
         // property
         public String Name { get { return name; } }
      
-        public String Value { get { return "composed"; } }
+        public String Type { get { return "composed"; } }
         //Ctor
         public ComposedMission(string nameFunc)
         {
             name = nameFunc;
+            listOfFunctions = new List<Calculation>();
         }
         // add functions to the list;
         public ComposedMission Add (Calc function)
@@ -31,11 +32,14 @@ namespace Excercise_1
         public double Calculate(double val)
         {
             double result = val;
-            foreach(Calc function in listOfFunctions)
+            foreach(Calculation function in listOfFunctions)
             {
                 result = function(result);
+                OnCalculate?.Invoke(this, result);
             }
             return result;
         }
+
+  
     }
 }
