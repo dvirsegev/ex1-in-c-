@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+// dvir segev
+// 318651627
 namespace Excercise_1
 {
-    // the delegate of the function.
+    // public member delegate (type double and get a double variable).
     public delegate double Calculation(double var);
+    /**
+     * contain a dictionary that connect between string and a function. 
+     * */
     public class FunctionsContainer
     {
         private Dictionary<String, Calculation> myDictionary;
+        // Ctor
         public FunctionsContainer()
         {
             myDictionary = new Dictionary<String, Calculation>();
@@ -35,6 +40,7 @@ namespace Excercise_1
             }
   
         }
+        // get all the mission
         public List<string> getAllMissions()
         {
             List<string> missions= new List<string>();

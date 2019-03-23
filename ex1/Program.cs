@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+// dvir segev
+// 318651627
 namespace Excercise_1
 {
+    /**
+     * our "main".
+     * */
     class Program
     {
         public static void RunMissions(IList<IMission> missions, double val)
